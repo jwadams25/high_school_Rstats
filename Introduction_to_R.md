@@ -1,4 +1,4 @@
-Introduction to R - Basic Features.
+Introduction to R - Basic Features
 ================
 Mr. Adams
 

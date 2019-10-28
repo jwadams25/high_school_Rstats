@@ -1,7 +1,7 @@
 ---
-title: "Introduction to R - Basic Features."
+title: "Introduction to R - Basic Features"
 author: "Mr. Adams"
-output: html_document
+output: github_document
 ---
 
 #Welcome to R
