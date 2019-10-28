@@ -2,7 +2,7 @@ Introduction to R - Basic Features
 ================
 Mr. Adams
 
-\#Welcome to R
+# Welcome to R
 
 Congratulations\! You are taking the first step toward becoming a data
 scientist. R is a powerful statistical programming language, and this

@@ -4,7 +4,7 @@ author: "Mr. Adams"
 output: github_document
 ---
 
-#Welcome to R
+# Welcome to R
 
 Congratulations! You are taking the first step toward becoming a data scientist. R is a powerful statistical programming language, and this document contains tips on the basics! 
 
