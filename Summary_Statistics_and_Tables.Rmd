@@ -1,0 +1,112 @@
+---
+title: "Summary Statistics and Tables"
+author: "Mr. Adams"
+output: html_document
+---
+
+#Using R to generate Statistics and Create Tables
+
+R is an incredibly powerful tool to help you quickly and efficiently make sense of a dataset. This document will show you how to generate summary statistics and build tables. 
+
+##Load Tidyverse and Skimr
+
+```{r load Tidyverse}
+library(tidyverse)
+library(skimr)
+```
+
+## Summarizing Quantitative Data
+
+When analyzing quantitative data, it's important to examine the shape, center, and spread of that distribution. Here are two ways you can do that. 
+
+### Using the summarize function. 
+
+#### Summarize one variable
+The summarize function is a great tool to use when you want to look at summary statistics for one variable or when grouping variables by a category. We will do both. 
+
+Here we generate the summary statistics for one variable. More specifically, we will have R calculate the mean, median, standard deviation, and IQR for the price variable. 
+
+```{r summarize one variable}
+
+price_summary_stats <- diamonds %>% 
+          summarize(avg = mean(price), med = median(price), 
+                    standard_dev = sd(price), 
+                    iqr = IQR(price))
+price_summary_stats
+
+```
+#### Using Group_by and Summarize Functions
+
+Here we will group the diamonds by color and then take the summary statistics for each color. 
+
+```{r group by and summarize}
+
+price_color_ss <- diamonds %>%
+    group_by(color) %>%
+    summarize(avg = mean(price), med = median(price), standard_dev = sd(price), 
+                    iqr = IQR(price))
+
+price_color_ss
+```
+
+#### Select and Skimr
+
+Let's say, when you look at a dataset, you are not quite sure exactly where to start. A good strategy is to look at the summary statistics for a few variables. By examing a few variables and making some initial conclusions, you can ask further questions and dive deeper into your analysis. 
+
+For this example, let's use the diamonds dataset again, but let's look at the depth, carat, and price variables. 
+
+```{r using skimr}
+
+diamonds %>%
+  select(carat, depth, price) %>%
+  skim()
+```
+
+## Analyzing Categorical Variables
+
+### Making a Table to Study One Categorical Variable
+
+When we have a categorical variable, we first want to see how many observations are in each category and what proportion of those observations fall in each category. 
+
+For example,  when using the diamonds dataset, we could ask, "How many and what proportion of diamonds in the dataset are each respective cut?" To answer this question, we will use the group_by function again as well as the summarize function. The last line will arrange the groups in descending order to make it easier to draw conclusions. I have also named the table cut_count_prop. 
+
+```{r making a table}
+
+cut_count_prop <- diamonds %>%
+            group_by(cut) %>%
+            summarize(count = n()) %>%
+            mutate(prop = count/sum(count)) %>%
+            arrange(desc(count))
+cut_count_prop
+
+```
+
+### Making Two-Way Tables to Study Conditional Distributions
+
+This two-way table shows the conditional distributions with totals. 
+
+```{r}
+totals <- diamonds %>%
+            group_by(color, cut) %>%
+            summarize(num = n()) %>%
+            spread(color, num)
+totals
+
+```
+
+Here we will create two-way tables with proportions.
+
+Each number in the table created with the following code represents the proportion of diamonds that are a specific color AND a specific cut. For example,  0.003 is the proportion of the TOTAL diamonds that are the color D and the cut FAIR.
+
+```{r}
+prop.table(table(diamonds$cut, diamonds$color)) %>% 
+  round(4)
+```
+
+You can also create a table to look at what proportion of a certain color are the various cuts. For example, the proportion of D colored diamonds that are Ideal cut is 0.41.
+
+```{r}
+prop.table(table(diamonds$cut, diamonds$color), margin = 2) %>% 
+  round(4)
+
+```
