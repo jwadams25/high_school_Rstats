@@ -2,14 +2,14 @@ Summary Statistics and Tables
 ================
 Mr. Adams
 
-\#Using R to generate Statistics and Create Tables
+# Using R to Generate Statistics and Create Tables
 
 R is an incredibly powerful tool to help you quickly and efficiently
 make sense of a dataset. This document will show you how to generate
-summary statistics and build tables.
+summary statistics and build
+    tables.
 
-\#\#Load Tidyverse and
-    Skimr
+## Load Tidyverse and Skimr
 
 ``` r
 library(tidyverse)
