@@ -18,6 +18,7 @@ library(readr)
 urlfile="https://raw.githubusercontent.com/jwadams25/high_school_Rstats/master/girls_bball_2018.csv"
 
 RGVB_team <- read.csv(url(urlfile))
+
 ```
 
 ## Histogram
