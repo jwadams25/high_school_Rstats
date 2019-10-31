@@ -92,6 +92,7 @@ totals <- diamonds %>%
             spread(color, num)
 totals
 
+
 ```
 
 Here we will create two-way tables with proportions.
