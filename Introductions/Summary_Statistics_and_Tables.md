@@ -15,14 +15,14 @@ summary statistics and build
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ────────────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ─────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
 
     ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.3
     ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
     ## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
     ## ✔ readr   1.3.1     ✔ forcats 0.4.0
 
-    ## ── Conflicts ───────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
@@ -114,13 +114,13 @@ diamonds %>%
     ##  n obs: 53940 
     ##  n variables: 3 
     ## 
-    ## ── Variable type:integer ──────────────────────────────────────────────────────────────
+    ## ── Variable type:integer ───────────────────────────────────────────────────────────────────────────────
     ##  variable missing complete     n   mean      sd  p0 p25  p50     p75  p100
     ##     price       0    53940 53940 3932.8 3989.44 326 950 2401 5324.25 18823
     ##      hist
     ##  ▇▃▂▁▁▁▁▁
     ## 
-    ## ── Variable type:numeric ──────────────────────────────────────────────────────────────
+    ## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────
     ##  variable missing complete     n  mean   sd   p0  p25  p50   p75  p100
     ##     carat       0    53940 53940  0.8  0.47  0.2  0.4  0.7  1.04  5.01
     ##     depth       0    53940 53940 61.75 1.43 43   61   61.8 62.5  79   
