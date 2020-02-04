@@ -1,0 +1,91 @@
+---
+title: "Inference 2.0"
+author: "Mr. Adams"
+date: "2/4/2020"
+output: github_document
+---
+## Load Libraries 
+```{r setup, load libraries}
+library(tidyverse)
+library(dslabs)
+```
+
+## 1. Get the data
+
+The name of the dataset is NAME_OF_DATASET. 
+Add in the name of the dataset and run the code to view the dataset. 
+```{r}
+view(NAME_OF_DATASET)
+```
+
+What are the two variables in this dataset?
+
+1. 
+2. 
+
+## 2. Examine the data
+
+What variable do I want to study? 
+
+What type of variable is it?
+
+## 3. Go down the Quantitative Path or the Categorical Path
+
+##Quantitatve Path 
+If you selected a QUANTITATIVE VARIABLE use this section, if not, skip below to find info on how to work with categorical variables.
+
+```{r Histogram for quant variable}
+
+NAME_OF_DATASET %>%
+  ggplot(aes(x = QUANTITATIVE_VARIABLE)) +
+  geom_histogram()
+
+```
+
+What is the shape of the distribution of reported NAME_OF_DATASET in your sample?
+
+
+```{r Summary stats for quant variable}
+QUANTITATIVE_VARIABLE_sum_stats <- NAME_OF_DATASET %>%
+    summarize(avg = mean(QUANTITATIVE_VARIABLE), med = median(QUANTITATIVE_VARIABLE), 
+              standard_dev = sd(QUANTITATIVE_VARIABLE), sample_size = n(), iqr = IQR(QUANTITATIVE_VARIABLE))
+
+QUANTITATIVE_VARIABLE_sum_stats
+```
+
+```{r Confidence interval for a mean}
+
+t.test(NAME_OF_DATASET$QUANTITATIVE_VARIABLE, conf.level = 0.95)
+
+```
+
+Write a sentence intepreting the confidence interval you created.
+
+
+## Categorical Path - 
+If you selected a CATEGORICAL VARIABLE use this section to create a bar graph, generate stats, and calculate confidence Interval
+
+```{r Bar graph for categorical variable}
+
+NAME_OF_DATASET %>%
+  ggplot(aes(x = CATEGORICAL_VARIABLE)) +
+  geom_bar()
+```
+
+```{r Summary stats for categorical variable }
+
+CATEGORICAL_VARIABLE_count <- NAME_OF_DATASET %>%
+            group_by(CATEGORICAL_VARIABLE) %>%
+            summarize(count = n()) %>%
+            mutate(prop = count/sum(count)) %>%
+            arrange(desc(count))
+CATEGORICAL_VARIABLE_count
+
+n <- sum(CATEGORICAL_VARIABLE_count$count)
+n
+```
+```{r Confidence interval for proportion}
+prop.test(812, 1050, conf.level = 0.95)
+```
+
+Write a sentence interpreting the confidence interval you created. 

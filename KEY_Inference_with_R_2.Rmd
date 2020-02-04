@@ -1,0 +1,92 @@
+---
+title: "Inference 2.0"
+author: "Mr. Adams"
+date: "2/4/2020"
+output: github_document
+---
+## Load Libraries 
+```{r setup, load libraries}
+library(tidyverse)
+library(dslabs)
+```
+
+## 1. Get the data
+
+The name of the dataset is heights. 
+Run the following code to view the dataset. 
+```{r}
+view(heights)
+```
+
+What are the two variables in this dataset?
+
+1. 
+2. 
+
+## 2. Examine the data
+
+What variable do I want to study? 
+
+What type of variable is it?
+
+## 3. Go down the Quantitative Path or the Categorical Path
+
+##Quantitatve Path 
+If you selected a QUANTITATIVE VARIABLE use this section, if not, skip below to find info on how to work with categorical variables.
+
+```{r Histogram for quant variable}
+
+heights %>%
+  ggplot(aes(x = height)) +
+  geom_histogram()
+
+```
+
+What is the shape of the distribution of reported heights in your sample?
+
+
+```{r Summary stats for quant variable}
+height_sum_stats <- heights %>%
+    summarize(avg = mean(height), med = median(height), 
+              standard_dev = sd(height), sample_size = n(), iqr = IQR(height))
+
+height_sum_stats
+```
+
+```{r Confidence interval for a mean}
+
+t.test(heights$height, conf.level = 0.95)
+
+```
+
+Write a sentence intepreting the confidence interval you created.
+
+
+## Categorical Path - 
+If you selected a CATEGORICAL VARIABLE use this section to create a bar graph, generate stats, and calculate confidence Interval
+
+```{r Bar graph for categorical variable}
+
+heights %>%
+  ggplot(aes(x = sex)) +
+  geom_bar()
+```
+
+```{r Summary stats for categorical variable }
+
+sex_count <- heights %>%
+            group_by(sex) %>%
+            summarize(count = n()) %>%
+            mutate(prop = count/sum(count)) %>%
+            arrange(desc(count))
+sex_count
+
+n <- sum(sex_count$count)
+n
+```
+```{r Confidence interval for proportion}
+prop.test(812, 1050, conf.level = 0.95)
+```
+
+Write a sentence interpreting the confidence interval you created. 
+
