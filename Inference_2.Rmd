@@ -12,7 +12,7 @@ library(dslabs)
 
 ## 1. Get the data
 
-The name of the dataset is NAME_OF_DATASET. 
+The name of the dataset is heights 
 Add in the name of the dataset and run the code to view the dataset. 
 ```{r}
 view(NAME_OF_DATASET)
