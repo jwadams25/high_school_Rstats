@@ -8,6 +8,7 @@ output: github_document
 ```{r setup, load libraries}
 library(tidyverse)
 library(dslabs)
+library(gridExtra)
 ```
 
 ## 1. Get the data
@@ -84,6 +85,7 @@ sex_count
 n <- sum(sex_count$count)
 n
 ```
+
 ```{r Confidence interval for proportion}
 prop.test(812, 1050, conf.level = 0.95)
 ```
@@ -95,11 +97,76 @@ In this section you will take a random sample from a large dataset. Your sample 
 
 ```{r sampling from large dataset}
 
-View(biketown_data)
+View(diamonds)
 set.seed(123)
-biketown_sample <- sample_n(biketown_data, 1000)
-View(biketown_sample)
+diamonds_sample <- sample_n(diamonds, 1000)
+View(diamonds_sample)
 
+```
+
+```{r}
+diamonds_sample %>%
+  ggplot(aes(x = color)) +
+  geom_bar()
+
+color_count <- diamonds_sample %>%
+            group_by(color) %>%
+            summarize(count = n()) %>%
+            mutate(prop = count/sum(count)) %>%
+            arrange(desc(count))
+color_count
+
+n <- sum(color_count$count)
+n
+
+prop.test(123, 1000, conf.level = 0.95)
+```
+
+# Filter and then construct Confidence Intervals for means
+
+Create new datasets. 
+
+```{r Create Datasets}
+
+just_for_men <- heights %>%
+                filter(sex == "Male")
+
+just_for_women <- heights %>%
+                filter(sex == "Female")
+
+```
+
+Visualize the distribtutions
+You can put all on the same graph or create different ones for each category. 
+
+```{r Visualize the distributions for each category}
+
+heights %>%
+  ggplot(aes(x = height, color = sex)) +
+  geom_density()
+
+heights %>%
+  ggplot(aes(x = height)) +
+  geom_histogram() +
+  facet_wrap(~sex, nrow = 2)
+```
+
+
+Generate summary stats for each group
+
+```{r Generate summary stats for each category}
+heights %>%
+  group_by(sex) %>%
+  summarize(avg = mean(height), med = median(height), 
+              standard_dev = sd(height), sample_size = n(), iqr = IQR(height))
+```
+
+Generate Confidence Intervals for each group
+
+```{r Construct a confidence interval for each group}
+t.test(just_for_men$height, conf.level = 0.95)
+
+t.test(just_for_women$height, conf.level = 0.95)
 ```
 
 
