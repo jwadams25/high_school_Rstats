@@ -1,0 +1,96 @@
+---
+title: "Inference - Comparisons"
+author: "Mr. Adams"
+output: github_document
+---
+
+##Install library 
+```{r install libraries}
+library(tidyverse)
+library(skimr)
+```
+
+##Load your data
+
+```{r download data}
+
+lozenge <- read.csv(url("https://raw.githubusercontent.com/jwadams25/high_school_Rstats/master/lozenge.csv"))
+
+```
+
+
+##For this activity, we will be looking at data from a study that tested the effectiveness of nicotine lozenges vs placebo lozenges (Siffman et al., 2002). 
+
+#What is the explanatory variable?
+
+#What is the response variable?
+
+##Create a 100% stacked graph to show the comparision between the proportions of people who abstained from smoking after taking a nicotine lozenge and taking a placebo lozenge.
+
+#In all of the code below, you will change sections that are written in all capital letters. 
+
+```{r create stacked graph}
+result_ordered <- c("resumed", "abstained")
+treatment_result <-  NAME_OF_DATASET %>%
+                    mutate(result = ordered(result, levels = result_ordered)) %>% 
+                    arrange(result) %>%
+                    ggplot(aes(x = EXPLANATORY_VARIABLE, fill = RESPONSE_VARIABLE)) +
+                    geom_bar(position = "fill") +
+                    labs(x = "TITLE OF X-AXIS")
+treatment_result
+```
+
+## Create a two-way table 
+
+```{r Create a two-way table}
+treatment_totals <- NAME_OF_DATASET %>%
+            group_by(EXPLANATORY_VARIABLE, RESPONSE_VARIABLE) %>%
+            summarize(num = n()) %>%
+            spread(EXPLANATORY_VARIABLE, num)
+treatment_totals
+```
+
+##In the space below cacluate the following:
+
+- prop_n_a = proportion of nicotine lozenge users who abstained from smoking
+- prop_p_a = proportion of placebo lozenge users who abstained from smoking
+- prop_c = combined proportion 
+
+```{r calculating proportions}
+prop_n_a <- 
+prop_p_a <- 
+prop_c <- 
+  
+props <- data.frame(prop_n_a,prop_p_a, prop_c)
+props
+```
+
+##Check the technical conditions
+
+```{r}
+
+```
+
+##Determine and interpret a 95% confidence interval for estimating the difference in population proptions showing successful abstinence between the two treatment groups. 
+
+```{r}
+two_prop_z <- prop.test(x = c(n_NICOTINE_ABSTAINED, n_PLACEBO_ABSTAINED), 
+                        n = c(n_NICOTINE, n_PLACEBO), correct = FALSE, conf.level = 0.95)
+two_prop_z
+```
+
+##Test of Significance 
+#Write your null hypothesis
+
+
+#Write your alternative hypothesis
+
+
+#Using the output from the code above, write your test decision. 
+
+
+
+# Write a sentence or two describing whether or not the difference in proportions is statistically significant. 
+
+
+
