@@ -31,12 +31,14 @@ lozenge <- read.csv(url("https://raw.githubusercontent.com/jwadams25/high_school
 
 ```{r create stacked graph}
 result_ordered <- c("resumed", "abstained")
-treatment_result <-  NAME_OF_DATASET %>%
+treatment_result <-  lozenge %>%
                     mutate(result = ordered(result, levels = result_ordered)) %>% 
                     arrange(result) %>%
                     ggplot(aes(x = EXPLANATORY_VARIABLE, fill = RESPONSE_VARIABLE)) +
                     geom_bar(position = "fill") +
-                    labs(x = "TITLE OF X-AXIS")
+                    labs(x = "", y = "Y-AXIS LABEL", 
+                         fill = "Label of the Key") +
+  theme_classic()
 treatment_result
 ```
 
@@ -67,6 +69,12 @@ props
 
 ##Check the technical conditions
 
+
+n1*p_hat1 >= 10
+n1(1-phat1) >= 10 
+n2*p_hat2 >= 10
+n2(1-phat2) >= 10 
+
 ```{r}
 
 ```
@@ -74,8 +82,11 @@ props
 ##Determine and interpret a 95% confidence interval for estimating the difference in population proptions showing successful abstinence between the two treatment groups. 
 
 ```{r}
-two_prop_z <- prop.test(x = c(n_NICOTINE_ABSTAINED, n_PLACEBO_ABSTAINED), 
-                        n = c(n_NICOTINE, n_PLACEBO), correct = FALSE, conf.level = 0.95)
+two_prop_z <- prop.test(x = c(NumberOf_NICOTINE_ABSTAINED, 
+                              NumberOf_PLACEBO_ABSTAINED), 
+                        n = c(TotalNumberOf_NICOTINE, 
+                              TotalNumberOf_PLACEBO), 
+                        correct = FALSE, conf.level = 0.95)
 two_prop_z
 ```
 
