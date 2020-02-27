@@ -1,0 +1,31 @@
+---
+title: "Inference - Comparisons Problem Set"
+author: "Mr. Adams"
+date: "2/27/2020"
+output: github_document
+---
+
+#Packages you will need
+
+```{r run libraries}
+library(tidyverse)
+library(skimr)
+library(magrittr)     
+library(gridExtra)  
+```
+
+#Question 1
+
+```{r Data for Question 1}
+driving_instructor <- read.csv(url("https://raw.githubusercontent.com/jwadams25/high_school_Rstats/master/driving_instructor.csv"))
+```
+
+
+#Question 2
+
+```{r Data for Question 2}
+
+blood_pressure <- read.csv(url("https://raw.githubusercontent.com/jwadams25/high_school_Rstats/master/blood_pressure.csv"))
+
+```
+
